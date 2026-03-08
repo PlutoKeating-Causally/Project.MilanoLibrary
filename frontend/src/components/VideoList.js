@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import KnowledgePoint from './KnowledgePoint';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
@@ -8,7 +9,7 @@ function VideoList() {
   const [selectedVideo, setSelectedVideo] = useState(null);
 
   useEffect(() => {
-    // MVP: 直接显示空列表，实际应该从后端获取
+    // MVP: 显示空列表，实际应该从后端获取
     setLoading(false);
   }, []);
 
@@ -69,26 +70,26 @@ function VideoList() {
       {selectedVideo && (
         <div className="video-modal">
           <div className="modal-content">
-            <h3>📊 分析结果: {selectedVideo.filename}</h3>
+            <div className="modal-header">
+              <h3>📊 分析结果: {selectedVideo.filename}</h3>
+              <button className="close-btn" onClick={() => setSelectedVideo(null)}>✕</button>
+            </div>
+            
             <div className="summary">
-              <h4>摘要</h4>
+              <h4>📄 摘要</h4>
               <p>{selectedVideo.summary}</p>
             </div>
             
-            <div className="sections">
-              <h4>章节</h4>
+            <div className="knowledge-points">
+              <h4>🎯 知识要点</h4>
               {selectedVideo.sections?.map((section) => (
-                <div key={section.id} className="section-item">
-                  <h5>{section.title}</h5>
-                  <p>{section.summary}</p>
-                  <p className="time">
-                    {section.start_time}s - {section.end_time}s
-                  </p>
-                </div>
+                <KnowledgePoint 
+                  key={section.id} 
+                  section={section} 
+                  videoId={selectedVideo.id}
+                />
               ))}
             </div>
-            
-            <button onClick={() => setSelectedVideo(null)}>关闭</button>
           </div>
         </div>
       )}
