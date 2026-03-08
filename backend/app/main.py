@@ -18,7 +18,7 @@ from app.services.video_processor import video_processor
 app = FastAPI(
     title="Project.MilanoLibrary API",
     description="AI-powered video content extraction and learning platform",
-    version="2.0.2"
+    version="2.0.3"
 )
 
 # CORS 配置
@@ -43,7 +43,7 @@ videos_db = {}
 async def root():
     return {
         "message": "Welcome to Project.MilanoLibrary API",
-        "version": "2.0.2",
+        "version": "2.0.3",
         "status": "running",
         "ai_enabled": True
     }
