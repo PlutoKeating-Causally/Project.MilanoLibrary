@@ -37,7 +37,37 @@ Project.MilanoLibrary/
 
 ## 快速开始
 
-见 [docs/QUICK_START.md](docs/QUICK_START.md)
+### 方式一：本地开发
+
+**后端:**
+```bash
+cd backend
+./run.sh
+```
+
+**前端:**
+```bash
+cd frontend
+./start.sh
+```
+
+### 方式二：Docker 部署
+
+```bash
+# 复制环境变量
+cp .env.example .env
+# 编辑 .env 填入 API Keys
+
+# 启动所有服务
+docker-compose up -d
+
+# 访问应用
+# 前端: http://localhost:3000
+# 后端 API: http://localhost:8000
+# API 文档: http://localhost:8000/docs
+```
+
+详细说明见 [docs/QUICK_START.md](docs/QUICK_START.md)
 
 ## 架构设计
 
